@@ -1,0 +1,138 @@
+:root {
+    --primary: #4f46e5;
+    --sidebar-w: 400px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+}
+
+/* 布局结构 */
+.app-layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* 左侧边栏 */
+.sidebar {
+    width: var(--sidebar-w);
+    background: #f8fafc;
+    border-right: 1px solid #e2e8f0;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.header h2 { margin: 0; color: #1e293b; }
+.header p { margin: 5px 0 0; color: #64748b; font-size: 0.9rem; }
+
+.settings input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #475569;
+    margin-bottom: 5px;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+button#planBtn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.1s;
+}
+
+button#planBtn:active { transform: scale(0.98); }
+
+/* AI 输出区域 */
+.ai-output {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+.ai-output h3 { margin-top: 0; font-size: 1rem; color: #334155; }
+.markdown-body { font-size: 0.9rem; color: #333; line-height: 1.6; }
+
+/* 右侧地图 */
+.map-container {
+    flex: 1;
+    position: relative;
+    background: #e5e7eb;
+}
+
+#map { width: 100%; height: 100%; }
+
+/* Loading 遮罩 */
+#loadingOverlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+}
+
+.spinner {
+    width: 40px; height: 40px;
+    border: 4px solid #e2e8f0;
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hidden { display: none !important; }
+
+/* 响应式：手机端上下布局 */
+@media (max-width: 768px) {
+    .app-layout { flex-direction: column; }
+    .sidebar { width: 100%; height: 50%; box-sizing: border-box; }
+    .map-container { height: 50%; }
+}
